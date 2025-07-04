@@ -1,13 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmehvls0ae83i"]
 
 [ext_resource type="Script" uid="uid://pi42m1etgywi" path="res://scripts/CardManager.gd" id="1_lb6jb"]
-[ext_resource type="Texture2D" uid="uid://rocyodru2tke" path="res://assets/icon.svg" id="2_r4eom"]
+[ext_resource type="PackedScene" uid="uid://bwqmqwn83y3gu" path="res://scenes/card.tscn" id="2_r4eom"]
 
 [node name="CardManager" type="Node2D"]
 script = ExtResource("1_lb6jb")
 
-[node name="Card" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Card"]
-position = Vector2(816, 379)
-texture = ExtResource("2_r4eom")
+[node name="Card" parent="." instance=ExtResource("2_r4eom")]

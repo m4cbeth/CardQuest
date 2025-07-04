@@ -6,9 +6,10 @@ var is_hovering_on_card
 var index_dragged_from := 0
 
 const COLLISION_CARD_MASK = 1
-const HOVER_SCALE_AMOUNT = 4.3
-const DEFAULT_SCALE_AMOUNT = Vector2(4,4)
-const HOVER_TWEEEN_SPEED = 0.2
+const HOVER_SCALE_AMOUNT = 1.1
+const DEFAULT_SCALE = 1
+const DEFAULT_SCALE_AMOUNT = Vector2(DEFAULT_SCALE, DEFAULT_SCALE)
+const HOVER_TWEEEN_SPEED = 0.08  # smaller == faster
 const MAX_X = 1920
 const MAX_Y = 1080
 
@@ -90,8 +91,7 @@ func raycast_check_for_card():
 func get_card_with_highest_z_index(cards):
 	# Assume first is highest
 	var highest_z_card = cards[0].collider.get_parent()
-	var highest_z_index = highest_z_card.z_index
-	
+	var highest_z_index = highest_z_card.z_index	
 	# Loop through rest checking for higher
 	for i in range(1, cards.size()):
 		var current_card = cards[i].collider.get_parent()
