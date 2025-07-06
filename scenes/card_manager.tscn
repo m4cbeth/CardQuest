@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmehvls0ae83i"]
+[gd_scene load_steps=7 format=3 uid="uid://dmehvls0ae83i"]
 
 [ext_resource type="Script" uid="uid://pi42m1etgywi" path="res://scripts/CardManager.gd" id="1_lb6jb"]
 [ext_resource type="PackedScene" uid="uid://bwqmqwn83y3gu" path="res://scenes/cards/card.tscn" id="2_r4eom"]
+[ext_resource type="PackedScene" uid="uid://c8p5u2dfg12kc" path="res://scenes/cards/card_attack.tscn" id="3_mjdmo"]
+[ext_resource type="PackedScene" uid="uid://bq6xkb204c2dx" path="res://scenes/cards/card_door.tscn" id="4_xws4u"]
+[ext_resource type="PackedScene" uid="uid://cgraq0x1oeu30" path="res://scenes/cards/card_fire.tscn" id="5_wur4o"]
+[ext_resource type="PackedScene" uid="uid://b35pwkpscyam8" path="res://scenes/cards/card_move.tscn" id="6_8aslw"]
 
 [node name="CardManager" type="Node2D"]
 script = ExtResource("1_lb6jb")
 
 [node name="Card" parent="." instance=ExtResource("2_r4eom")]
+
+[node name="Card2" parent="." instance=ExtResource("3_mjdmo")]
+position = Vector2(-16, -638)
+
+[node name="Card3" parent="." instance=ExtResource("4_xws4u")]
+position = Vector2(64, -360)
+
+[node name="Card4" parent="." instance=ExtResource("5_wur4o")]
+position = Vector2(1280, -372)
+
+[node name="Card5" parent="." instance=ExtResource("6_8aslw")]
+position = Vector2(1121, -1)
