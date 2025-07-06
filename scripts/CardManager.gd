@@ -13,6 +13,7 @@ const HOVER_TWEEEN_SPEED = 0.08  # smaller == faster
 const MAX_X = 1920
 const MAX_Y = 1080
 
+
 func clamp_mouse(mouse_pos: Vector2):
 	return Vector2(clamp(mouse_pos.x, 0, MAX_X), clamp(mouse_pos.y, 0, MAX_Y))
 
@@ -34,9 +35,27 @@ func _input(event):
 				#$"../Background/Camera2D".trigger_shake()
 				#$"CardDropSound".play()
 
+func highlight_drop_areas(card: Card):
+	var areas = $"../BattleManager".find_children("*", "Area2D")
+	var door_zones = ["Zone2", "Zone4", "Zone6"]
+	for area in areas:
+		if card.card_type == "door" and door_zones.any(func(group): return area.is_in_group(group)):
+			var halo: AnimatedSprite2D = area.find_child("BlueHalo*")
+			if !halo: return
+			halo.visible = true
+	
+
 func start_drag(card):
 	card_being_dragged = card
 	card.scale = DEFAULT_SCALE_AMOUNT
+	highlight_drop_areas(card)
+	# note to self, card is passing "self" so "card" can do anything on that boy
+	
+	# turn on all blue halos available
+	
+	# if door card, spot 2, 4, 6
+	
+	
 	#var hand_array: Array = playerhand_node.player_hand
 	#index_dragged_from = hand_array.find(card)
 	#hand_array.erase(card)
@@ -49,12 +68,17 @@ func finish_drag(card: Node):
 		var cardarea: Area2D = card.find_child("Area2D")
 		if card.is_in_group("playing_cards"):
 			var overlapping = cardarea.get_overlapping_areas()
+			
 			#if not overlapping.any(func(elem): return elem.is_in_group("glyph")):
 				# return to hand
 				#playerhand_node.add_card_to_hand(card, 0)
 				#playerhand_node.update_hand_positions()
-	
 	card_being_dragged = null
+	var areas = $"../BattleManager".find_children("*", "Area2D")	
+	for area in areas:
+		var halo: AnimatedSprite2D = area.find_child("BlueHalo*")
+		if !halo: return
+		halo.visible = false
 
 func on_hovered_over_card(card):
 	if !is_hovering_on_card:
